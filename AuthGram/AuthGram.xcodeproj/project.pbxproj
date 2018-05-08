@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4113C720968B9400E6EABA /* AppDelegate.swift */; };
-		DD4113CA20968B9400E6EABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4113C920968B9400E6EABA /* ViewController.swift */; };
 		DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CB20968B9400E6EABA /* Main.storyboard */; };
 		DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CE20968B9500E6EABA /* Assets.xcassets */; };
 		DD4113D220968B9500E6EABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */; };
+		DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */; };
+		DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */; };
+		DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */; };
 		DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCD6B2620968C5E00991232 /* ServiceHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD4113C420968B9400E6EABA /* AuthGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4113C720968B9400E6EABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD4113C920968B9400E6EABA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DD4113CC20968B9400E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD4113CE20968B9500E6EABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD4113D120968B9500E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4113D320968B9500E6EABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
+		DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DDCD6B2620968C5E00991232 /* ServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,15 +60,25 @@
 		DD4113C620968B9400E6EABA /* AuthGram */ = {
 			isa = PBXGroup;
 			children = (
+				DDBF1B4A20A12FD800E1F5E4 /* Models */,
 				DDCD6B2520968C1400991232 /* Services */,
 				DD4113C720968B9400E6EABA /* AppDelegate.swift */,
-				DD4113C920968B9400E6EABA /* ViewController.swift */,
 				DD4113CB20968B9400E6EABA /* Main.storyboard */,
 				DD4113CE20968B9500E6EABA /* Assets.xcassets */,
 				DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */,
 				DD4113D320968B9500E6EABA /* Info.plist */,
+				DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */,
+				DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */,
 			);
 			path = AuthGram;
+			sourceTree = "<group>";
+		};
+		DDBF1B4A20A12FD800E1F5E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DDCD6B2520968C1400991232 /* Services */ = {
@@ -146,9 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD4113CA20968B9400E6EABA /* ViewController.swift in Sources */,
+				DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */,
 				DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */,
+				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
+				DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
