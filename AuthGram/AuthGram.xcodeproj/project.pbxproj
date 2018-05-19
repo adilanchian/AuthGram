@@ -11,6 +11,8 @@
 		DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CB20968B9400E6EABA /* Main.storyboard */; };
 		DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CE20968B9500E6EABA /* Assets.xcassets */; };
 		DD4113D220968B9500E6EABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */; };
+		DD7A840C20B0B6500080147F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A840B20B0B6500080147F /* AuthViewController.swift */; };
+		DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */; };
 		DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */; };
 		DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */; };
 		DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */; };
@@ -24,6 +26,8 @@
 		DD4113CE20968B9500E6EABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD4113D120968B9500E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4113D320968B9500E6EABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD7A840B20B0B6500080147F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -61,16 +65,42 @@
 			isa = PBXGroup;
 			children = (
 				DDBF1B4A20A12FD800E1F5E4 /* Models */,
+				DD7A840920B0B5E60080147F /* Main */,
+				DD7A840A20B0B62D0080147F /* Auth */,
+				DD7A840E20B0BD710080147F /* UploadImage */,
 				DDCD6B2520968C1400991232 /* Services */,
 				DD4113C720968B9400E6EABA /* AppDelegate.swift */,
 				DD4113CB20968B9400E6EABA /* Main.storyboard */,
 				DD4113CE20968B9500E6EABA /* Assets.xcassets */,
 				DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */,
 				DD4113D320968B9500E6EABA /* Info.plist */,
+			);
+			path = AuthGram;
+			sourceTree = "<group>";
+		};
+		DD7A840920B0B5E60080147F /* Main */ = {
+			isa = PBXGroup;
+			children = (
 				DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */,
 				DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */,
 			);
-			path = AuthGram;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DD7A840A20B0B62D0080147F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A840B20B0B6500080147F /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DD7A840E20B0BD710080147F /* UploadImage */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */,
+			);
+			path = UploadImage;
 			sourceTree = "<group>";
 		};
 		DDBF1B4A20A12FD800E1F5E4 /* Models */ = {
@@ -160,10 +190,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */,
 				DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */,
 				DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */,
 				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
+				DD7A840C20B0B6500080147F /* AuthViewController.swift in Sources */,
 				DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

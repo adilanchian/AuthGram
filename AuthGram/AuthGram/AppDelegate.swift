@@ -37,6 +37,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // When the application is active, lets create our servicehandler and make a test request //
         let serviceHandler = ServiceHandler()
         serviceHandler.testRequest()
+        
+        // If there are no images in the database, display other view controller //
+        /*
+         // Empty state //
+         if self.mockImageCells.count == 0 {
+         let emptyLabel = UILabel(frame: CGRect(x: 0, y: (UIScreen.main.bounds.height / 2), width: UIScreen.main.bounds.width, height: 25))
+         emptyLabel.text = "No one has posted any images :("
+         
+         // Set id to remove empty label //
+         emptyLabel.tag = 404
+         
+         self.view.addSubview(emptyLabel)
+         } else {
+         // Lets check for our empty state label //
+         if let emptyView = self.view.viewWithTag(404) {
+         emptyView.removeFromSuperview()
+         }
+         }
+        */
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -10,10 +10,12 @@ import UIKit
 
 private let reuseIdentifier = "ImageCell"
 
-class ImageCollectionViewController: UICollectionViewController {
+class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate {
     //-- Properties --//
     var mockImageCells = Array<ImageCell>()
     let tabBar = UITabBar()
+    // TODO: REMOVE TEST PROP //
+    var loggedIn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,30 @@ class ImageCollectionViewController: UICollectionViewController {
     }
     
     //-- Tab bar helpers --//
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print("Starting auth view..")
+        var controller: UIViewController?
+        
+        if loggedIn {
+            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadImageController") as? UploadImageViewController
+        } else {
+            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthController") as? AuthViewController
+        }
+  
+        
+        if controller != nil {
+            self.present(controller!, animated: true) {
+                print("VC presented")
+            }
+        } else {
+            print("Something went wrong and VC is nil.")
+        }
+    }
+    
     private func initTabBar() {
+        // Init tab bar delegate //
+        self.tabBar.delegate = self
+        
         // Setup background color, size and position //
         self.tabBar.backgroundColor = UIColor(red:0.65, green:0.65, blue:0.65, alpha:0.1)
         self.tabBar.frame = CGRect.init(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 90)
@@ -59,6 +84,6 @@ class ImageCollectionViewController: UICollectionViewController {
         // Add camera image to tab bar //
         let barItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "camera"), tag: 1)
         self.tabBar.setItems([barItem], animated: true)
-//        self.tabBar.sizeThatFits(CGSize.init(width: 90, height: 90))
+        
     }
 }
