@@ -15,7 +15,7 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
     var mockImageCells = Array<ImageCell>()
     let tabBar = UITabBar()
     // TODO: REMOVE TEST PROP //
-    var loggedIn = false
+    var loggedIn = true
     
     override func viewDidLoad() {
         super.viewDidLoad()

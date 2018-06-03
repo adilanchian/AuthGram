@@ -1,17 +1,20 @@
 {
-  "name": "authgram-server",
-  "version": "1.0.0",
-  "description": "Auth0 Sample Project",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "Alec Dilanchian",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "mongodb": "^3.0.7"
-  }
+	"name": "authgram-server",
+	"version": "1.0.0",
+	"description": "Auth0 Sample Project",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon server.js"
+	},
+	"author": "Alec Dilanchian",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"mongodb": "^3.0.7"
+	},
+	"devDependencies": {
+		"nodemon": "^1.17.5"
+	}
 }

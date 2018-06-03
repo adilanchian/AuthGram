@@ -16,6 +16,7 @@ class ServiceHandler {
     // Properties //
     fileprivate var urlComponents: URLComponents
     fileprivate var session: URLSession
+    fileprivate let endpointPath = "/api/v1"
     
     init() {
         self.urlComponents = URLComponents()
@@ -28,18 +29,43 @@ class ServiceHandler {
     
     // Test request method //
     public func testRequest() {
+        guard let task = createRequestTask(method: "GET", endpoint: "/") else {
+            print("Request task could not be completed. Returning")
+            return
+        }
+        
+        // If task becomes suspended, resume //
+        task.resume()
+    }
+    
+    // GET api/v1/images //
+    
+    public func getImages() {
+        guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images") else {
+            print("Request task could not be completed. Returning")
+            return
+        }
+        
+        // If task becomes suspended, resume //
+        task.resume()
+    }
+    
+    private func createRequestTask(method: String, endpoint: String) -> URLSessionTask? {
+        // Set endpoint path //
+        self.urlComponents.path = endpoint
+        
         // Check to see if request is nil //
         guard let url = self.urlComponents.url else {
             print("URL is nil. Returning.")
-            return
+            return nil
         }
         
         // Set method //
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = method
         
         // Make request //
-        let task = self.session.dataTask(with: request) {
+        return self.session.dataTask(with: request) {
             (responseData, response, error) in
             
             // Check for errors //
@@ -50,15 +76,21 @@ class ServiceHandler {
             
             // Get response data //
             if let data = responseData {
-                if let strResponse = String(data: data, encoding: String.Encoding.utf8) {
-                    print("Request was successful: \(strResponse)")
-                } else {
-                    print("Request was successful, but could not parse out string response.")
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    
+                    // Check for data key //
+                    if let images = json!["data"] as? [String: Any] {
+                        // Convert to Custom Image class and send to collection view //
+                        let imgurImage = ImgurImage(imageObj: images)
+                        print(imgurImage)
+                    } else {
+                        print(json)
+                    }
+                } catch {
+                    print(error.localizedDescription)
                 }
             }
         }
-        
-        // If task becomes suspended, resume //
-        task.resume()
     }
 }

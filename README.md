@@ -17,3 +17,10 @@ Application that displays a list of images that can be viewed by all, but only l
 **_Server_**: Node.js<br>
 **_Storage_**: Imgur<br>
 **_Auth_**: Auth0
+
+### ENV Variables Needed:
+
+#### Imgur
+
+`IMGUR_CLIENT_ID`
+`IMGUR_CLIENT_SECRET`

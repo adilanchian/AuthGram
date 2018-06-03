@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */; };
 		DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4113C720968B9400E6EABA /* AppDelegate.swift */; };
 		DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CB20968B9400E6EABA /* Main.storyboard */; };
 		DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CE20968B9500E6EABA /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurImage.swift; sourceTree = "<group>"; };
 		DD4113C420968B9400E6EABA /* AuthGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4113C720968B9400E6EABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD4113CC20968B9400E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */,
+				DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			files = (
 				DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */,
 				DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */,
+				DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */,
 				DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */,
 				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
