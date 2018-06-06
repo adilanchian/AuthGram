@@ -10,31 +10,31 @@ import Foundation
 
 class ImgurImage {
     //-- Properties --//
-    private var account_id: String?
-    private var account_url: String?
-    private var ad_type: Int
-    private var ad_url: String
-    private var animated: Int
-    private var bandwidth: Int
-    private var datetime: Int
-    private var description: String?
-    private var favorite: Int
-    private var has_sound: Int
-    private var height: Int
-    private var id: String
-    private var in_gallery: Int
-    private var in_most_viral: Int
-    private var is_ad: Int
-    private var link: String
-    private var nsfw: String?
-    private var section: String?
-    private var size: Int
-    private var tags: [String]
-    private var title: String?
-    private var type: String
-    private var views: Int
-    private var vote: String?
-    private var width: Int
+     var account_id: String?
+     var account_url: String?
+     var ad_type: Int
+     var ad_url: String
+     var animated: Int
+     var bandwidth: Int
+     var datetime: Int
+     var description: String?
+     var favorite: Int
+     var has_sound: Int
+     var height: Int
+     var id: String
+     var in_gallery: Int
+     var in_most_viral: Int
+     var is_ad: Int
+     var link: String
+     var nsfw: String?
+     var section: String?
+     var size: Int
+     var tags: [String]
+     var title: String?
+     var type: String
+     var views: Int
+     var vote: String?
+     var width: Int
     
     init(imageObj: [String: Any]) {
         self.account_id = imageObj["account_id"] as? String

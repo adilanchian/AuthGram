@@ -10,18 +10,20 @@ import UIKit
 
 private let reuseIdentifier = "ImageCell"
 
-class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate {
+class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate, ImageHandlerDelegate {
     //-- Properties --//
-    var mockImageCells = Array<ImageCell>()
+    var images = Dictionary<String, Any>()
     let tabBar = UITabBar()
     // TODO: REMOVE TEST PROP //
     var loggedIn = true
+    let serviceHandler = ServiceHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup mock data //
-        self.mockImageCells = initMockImageCells()
+        // Get images //
+        serviceHandler.delegate = self
+        serviceHandler.getImages()
         
         // Setup tab bar //
         self.initTabBar()
@@ -34,20 +36,18 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // This will be the number of images we receive from the database //
-        // TODO: Setup non-mock data //
-        return 10
+        return self.images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
         
         // Get current imageCell obj //
-        let currentImageCell = self.mockImageCells[indexPath.row]
+        let currentImageCell = Array(self.images.values)[indexPath.row] as! Dictionary<String, Any>
         
-        cell.initCell(username: currentImageCell.user.username, image: currentImageCell.image, date: currentImageCell.date)
+        cell.initCell(image: currentImageCell)
         
         return cell
     }
@@ -85,5 +85,25 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         let barItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "camera"), tag: 1)
         self.tabBar.setItems([barItem], animated: true)
         
+    }
+    
+    //-- Delegate --//
+    func didReceiveImages(images: Array<ImgurImage>) {
+        print("In delegate call")
+        // Download images, async and set in array //
+        DispatchQueue.global(qos: .userInitiated).async {
+            images.forEach({ (image) in
+                if let imageUrl = URL(string: image.link) {
+                    let imageData = try? Data(contentsOf: imageUrl)
+                    
+                    DispatchQueue.main.async {
+                        if imageData != nil {
+                            self.images[image.id] = ["dateTime": image.datetime, "image": UIImage(data: imageData!)!]
+                            self.collectionView?.reloadData()
+                        }
+                    }
+                }
+            })
+        }
     }
 }

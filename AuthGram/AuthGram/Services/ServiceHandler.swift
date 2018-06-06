@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /*
     Struct coming soon! We need to create a model for our data to deserialize to
@@ -17,6 +18,7 @@ class ServiceHandler {
     fileprivate var urlComponents: URLComponents
     fileprivate var session: URLSession
     fileprivate let endpointPath = "/api/v1"
+    public var delegate: ImageHandlerDelegate? = nil
     
     init() {
         self.urlComponents = URLComponents()
@@ -80,12 +82,19 @@ class ServiceHandler {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     
                     // Check for data key //
-                    if let images = json!["data"] as? [String: Any] {
-                        // Convert to Custom Image class and send to collection view //
-                        let imgurImage = ImgurImage(imageObj: images)
-                        print(imgurImage)
+                    if let images = json!["data"] as? Array<AnyObject> {
+                        var finalImages = Array<ImgurImage>()
+                        
+                        // Get length of images array //
+                        images.forEach({ (image) in
+                            // Convert to Custom Image class and send to collection view //
+                            let imgurImage = ImgurImage(imageObj: image as! [String: Any])
+                            finalImages.append(imgurImage)
+                        })
+                        
+                        self.delegate?.didReceiveImages(images: finalImages)
                     } else {
-                        print(json)
+                        //print(json)
                     }
                 } catch {
                     print(error.localizedDescription)

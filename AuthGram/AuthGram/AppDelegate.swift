@@ -34,10 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // When the application is active, lets create our servicehandler and make a test request //
-        let serviceHandler = ServiceHandler()
-        serviceHandler.getImages()
-        
         // If there are no images in the database, display other view controller //
         /*
          // Empty state //

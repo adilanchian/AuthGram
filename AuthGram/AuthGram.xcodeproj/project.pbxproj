@@ -16,8 +16,8 @@
 		DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */; };
 		DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */; };
 		DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */; };
-		DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */; };
 		DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCD6B2620968C5E00991232 /* ServiceHandler.swift */; };
+		DDD952B920C7487A002416FC /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD952B820C7487A002416FC /* Delegates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DDCD6B2620968C5E00991232 /* ServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHandler.swift; sourceTree = "<group>"; };
+		DDD952B820C7487A002416FC /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +66,7 @@
 		DD4113C620968B9400E6EABA /* AuthGram */ = {
 			isa = PBXGroup;
 			children = (
+				DDD952B820C7487A002416FC /* Delegates.swift */,
 				DDBF1B4A20A12FD800E1F5E4 /* Models */,
 				DD7A840920B0B5E60080147F /* Main */,
 				DD7A840A20B0B62D0080147F /* Auth */,
@@ -108,7 +109,6 @@
 		DDBF1B4A20A12FD800E1F5E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DDBF1B4B20A12FE900E1F5E4 /* MockData.swift */,
 				DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */,
 			);
 			path = Models;
@@ -198,9 +198,9 @@
 				DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */,
 				DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */,
 				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
+				DDD952B920C7487A002416FC /* Delegates.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
 				DD7A840C20B0B6500080147F /* AuthViewController.swift in Sources */,
-				DDBF1B4C20A12FE900E1F5E4 /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

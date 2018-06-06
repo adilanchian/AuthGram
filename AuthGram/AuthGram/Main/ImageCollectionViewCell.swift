@@ -14,13 +14,20 @@ class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var date: UILabel!
     
-    public func initCell(username: String, image: UIImage, date: String) {
-        self.image.image = image
-        self.username.text = username
-        self.date.text = date
+    public func initCell(image: Dictionary<String, Any>) {
+        // Set image //
+        self.image.image = image["image"] as? UIImage
         
+        // Convert date time //
+        let date = Date(timeIntervalSince1970: Double(image["dateTime"] as! Int))
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy/MM/dd" //Specify your format that you want
+        self.date.text = formatter.string(from: date)
+        
+//        self.username.text = username
         // Set text to fit after setting //
-        self.username.sizeToFit()
+//        self.username.sizeToFit()
         self.date.sizeToFit()
     }
 }
