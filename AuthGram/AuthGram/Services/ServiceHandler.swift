@@ -31,7 +31,7 @@ class ServiceHandler {
     
     // Test request method //
     public func testRequest() {
-        guard let task = createRequestTask(method: "GET", endpoint: "/") else {
+        guard let task = createRequestTask(method: "GET", endpoint: "/", dataString: nil) else {
             print("Request task could not be completed. Returning")
             return
         }
@@ -43,7 +43,7 @@ class ServiceHandler {
     // GET api/v1/images //
     
     public func getImages() {
-        guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images") else {
+        guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images", dataString: nil) else {
             print("Request task could not be completed. Returning")
             return
         }
@@ -52,7 +52,18 @@ class ServiceHandler {
         task.resume()
     }
     
-    private func createRequestTask(method: String, endpoint: String) -> URLSessionTask? {
+    public func postImage(base64Img: String) {
+        print("Starting post image request...")
+        
+        guard let task = createRequestTask(method: "POST", endpoint: "\(self.endpointPath)/image", dataString: base64Img) else {
+            print("Request task could not be completed. Returning")
+            return
+        }
+        
+        task.resume()
+    }
+    
+    private func createRequestTask(method: String, endpoint: String, dataString: String?) -> URLSessionTask? {
         // Set endpoint path //
         self.urlComponents.path = endpoint
         
@@ -62,8 +73,25 @@ class ServiceHandler {
             return nil
         }
         
-        // Set method //
         var request = URLRequest(url: url)
+        
+        // Check for data //
+        if let bodyData = dataString {
+            print("Data passed in.")
+            
+            do {
+                let imgBody = ["image":["content_type": "image/jpeg", "filename": "test.jpg", "file_data": bodyData]]
+                
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = try JSONSerialization.data(withJSONObject: imgBody, options: .prettyPrinted)
+                
+                print("Request body generated.")
+            } catch {
+                 print(error.localizedDescription)
+            }
+        }
+        
+        // Set method //
         request.httpMethod = method
         
         // Make request //
@@ -81,7 +109,7 @@ class ServiceHandler {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     
-                    // Check for data key //
+                    // Get Images From Album Response //
                     if let images = json!["data"] as? Array<AnyObject> {
                         var finalImages = Array<ImgurImage>()
                         
@@ -93,8 +121,17 @@ class ServiceHandler {
                         })
                         
                         self.delegate?.didReceiveImages(images: finalImages)
-                    } else {
-                        //print(json)
+                    }
+                    
+                    // Errors || Upload Image Response //
+                    if let data = json!["data"] {
+                        let dataObj = data as AnyObject
+                        
+                        if let error = dataObj.error as? String {
+                            print("StatusCode \(json!["status"] as! Int): \(error)")
+                        } else {
+                            print("StatusCode \(json!["status"] as! Int): \(dataObj)")
+                        }
                     }
                 } catch {
                     print(error.localizedDescription)
