@@ -9,7 +9,7 @@ const imgur = require('./Imgur/imgur');
 const baseApiPath = '/api/v1';
 
 // Routes //
-server.use(bodyParser.raw());
+server.use(bodyParser.json({ limit: '16mb', extended: true }));
 server.get('/', (req, res) => {
 	console.log('Root Route Hit.');
 	res.send('Welcome to AuthGram!');
@@ -19,17 +19,36 @@ server.get(`${baseApiPath}/images`, async (req, res) => {
 	console.log('Fetching all images...');
 
 	// Send request to get images from Imgur album //
-	let images = await imgur.getImages();
+	let result = await imgur.getImages().catch(json => {
+		res.send({ data: { error: json.data.error }, status: json.status });
+	});
 
-	res.send(images);
+	res.send({ data: result.data, status: result.status });
 });
 
-server.post(`${baseApiPath}/image/upload`, async (req, res) => {
-	console.log('Posting all images...');
+server.post(`${baseApiPath}/image`, async (req, res) => {
+	console.log('Posting image...');
+	/*
+		{
+			user: String,
+			image: Base64 String
+		}
+	*/
+	let imgString = req.body.image.file_data;
+	let result = await imgur.postImage(imgString).catch(json => {
+		console.log(json.data.error);
+		// Fail //
+		res.send({
+			data: { error: json.data.error },
+			status: json.status
+		});
+	});
 
-	// Write body stream to file //
-	let filename = req.headers['x-filename'];
-	res.sendStatus(200);
+	// Success //
+	res.send({
+		data: result.data,
+		status: result.status
+	});
 });
 
 server.listen(8000, () => {
