@@ -11,8 +11,10 @@ import UIKit
 private let reuseIdentifier = "ImageCell"
 
 class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate, ImageHandlerDelegate {
+    
     //-- Properties --//
     var images = Dictionary<String, Any>()
+    var imageList = Array<ImgurImage>()
     let tabBar = UITabBar()
     // TODO: REMOVE TEST PROP //
     var loggedIn = true
@@ -38,14 +40,14 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // This will be the number of images we receive from the database //
-        return self.images.count
+        return self.imageList.list.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
         
         // Get current imageCell obj //
-        let currentImageCell = Array(self.images.values)[indexPath.row] as! Dictionary<String, Any>
+        let currentImageCell = self.imageList.list[indexPath.row]
         
         cell.initCell(image: currentImageCell)
         
@@ -55,21 +57,24 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
     //-- Tab bar helpers --//
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("Starting auth view..")
-        var controller: UIViewController?
         
         if loggedIn {
-            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadImageController") as? UploadImageViewController
-        } else {
-            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthController") as? AuthViewController
-        }
-  
-        
-        if controller != nil {
-            self.present(controller!, animated: true) {
-                print("VC presented")
+            guard let uploadImgVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadImageController") as? UploadImageViewController else {
+                print("UploadImageVC was nil. Returning.")
+                return
+            }
+            
+            uploadImgVC.imageTableRef = self
+            present(uploadImgVC, animated: true) {
+                print("uploadImgVC presented.")
             }
         } else {
-            print("Something went wrong and VC is nil.")
+            guard let authVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthController") as? AuthViewController else {
+                print("AuthVC was nil. Returning.")
+                return
+            }
+            
+            self.navigationController?.pushViewController(authVC, animated: true)
         }
     }
     
@@ -89,21 +94,26 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
     
     //-- Delegate --//
     func didReceiveImages(images: Array<ImgurImage>) {
-        print("In delegate call")
         // Download images, async and set in array //
-        DispatchQueue.global(qos: .userInitiated).async {
-            images.forEach({ (image) in
-                if let imageUrl = URL(string: image.link) {
-                    let imageData = try? Data(contentsOf: imageUrl)
-                    
-                    DispatchQueue.main.async {
-                        if imageData != nil {
-                            self.images[image.id] = ["dateTime": image.datetime, "image": UIImage(data: imageData!)!]
-                            self.collectionView?.reloadData()
-                        }
-                    }
-                }
-            })
+        images.forEach({ (image) in
+            guard let imageUrl = URL(string: image.link) else {
+                return
+            }
+            
+            image.image_data = try? Data(contentsOf: imageUrl)
+            self.imageList.list.insert(image, at: 0)
+        })
+        
+        DispatchQueue.main.async {
+            if let uploadImageVC = self.presentedViewController as? UploadImageViewController {
+                // Update received, close the modal after upload //
+                print("Upload finished. Closing VC.")
+                uploadImageVC.dismiss(animated: true, completion: {
+                    print("dismissed")
+                })
+            }
+            
+            self.collectionView?.reloadData()
         }
     }
 }

@@ -18,7 +18,7 @@ class ServiceHandler {
     fileprivate var urlComponents: URLComponents
     fileprivate var session: URLSession
     fileprivate let endpointPath = "/api/v1"
-    public var delegate: ImageHandlerDelegate? = nil
+    var delegate: ImageHandlerDelegate? = nil
     
     init() {
         self.urlComponents = URLComponents()
@@ -30,7 +30,7 @@ class ServiceHandler {
     }
     
     // Test request method //
-    public func testRequest() {
+    func testRequest() {
         guard let task = createRequestTask(method: "GET", endpoint: "/", dataString: nil) else {
             print("Request task could not be completed. Returning")
             return
@@ -42,7 +42,7 @@ class ServiceHandler {
     
     // GET api/v1/images //
     
-    public func getImages() {
+    func getImages() {
         guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images", dataString: nil) else {
             print("Request task could not be completed. Returning")
             return
@@ -52,7 +52,7 @@ class ServiceHandler {
         task.resume()
     }
     
-    public func postImage(base64Img: String) {
+    func postImage(base64Img: String) {
         print("Starting post image request...")
         
         guard let task = createRequestTask(method: "POST", endpoint: "\(self.endpointPath)/image", dataString: base64Img) else {
@@ -121,16 +121,20 @@ class ServiceHandler {
                         })
                         
                         self.delegate?.didReceiveImages(images: finalImages)
-                    }
-                    
-                    // Errors || Upload Image Response //
-                    if let data = json!["data"] {
-                        let dataObj = data as AnyObject
-                        
-                        if let error = dataObj.error as? String {
-                            print("StatusCode \(json!["status"] as! Int): \(error)")
-                        } else {
-                            print("StatusCode \(json!["status"] as! Int): \(dataObj)")
+                    } else {
+                        // Errors || Upload Image Response //
+                        if let data = json!["data"] {
+                            let dataObj = data as AnyObject
+                            
+                            if let error = dataObj.error as? String {
+                                print("StatusCode \(json!["status"] as! Int): \(error)")
+                            } else {
+                                print("StatusCode \(json!["status"] as! Int): \(dataObj)")
+                                
+                                // Convert Image //
+                                let newImage = ImgurImage(imageObj: dataObj as! [String : Any])
+                                self.delegate?.didReceiveImages(images: [newImage])
+                            }
                         }
                     }
                 } catch {

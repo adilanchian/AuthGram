@@ -10,8 +10,10 @@ import UIKit
 import Photos
 
 class UploadImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     //-- Properties --//
     let serviceHandler = ServiceHandler()
+    var imageTableRef: ImageCollectionViewController? = nil
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
     
@@ -26,13 +28,9 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func uploadSelectedImage(_ sender: Any) {
         // Convert to base64 //
         let base64Image = self.toBase64()
-        
+
         // Send body over to ServiceHandler for upload api //
-        serviceHandler.postImage(base64Img: base64Image!)
-        
-        // On success, close view //
-        
-        // On error, display //
+        self.serviceHandler.postImage(base64Img: base64Image!)
     }
     
     override func viewDidLoad() {
@@ -41,6 +39,8 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
         // Ask permission to use photo library //
         PHPhotoLibrary.requestAuthorization({status in
             if status == .authorized {
+                self.serviceHandler.delegate = self.imageTableRef
+                
                 // Open Camera Roll to select photo //
                 if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                     let imagePicker = UIImagePickerController()
