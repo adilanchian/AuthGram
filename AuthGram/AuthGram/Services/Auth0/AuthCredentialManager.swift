@@ -10,8 +10,10 @@ import Foundation
 import Auth0
 
 class AuthCredentialManager {
-    //-- Properties -- //
+    
+    //-- Properties --//
     var manager: CredentialsManager!
+    var delegate: AuthHandlerDelegate? = nil
     
     init() {
         self.manager = CredentialsManager(authentication: Auth0.authentication())
@@ -20,27 +22,31 @@ class AuthCredentialManager {
     private func getUserCreds(callback: @escaping (_ creds: Credentials) -> ()) {
         self.manager.credentials { error, credentials in
             guard error == nil, let credentials = credentials else {
-                // Handle error
-                print("Error: \(error)")
+                // Handle error //
+                print("Error: \(error?.localizedDescription)")
                 return
             }
-            // You now have a valid credentials object, you might want to store this locally for easy access.
-            // You will use this later to retrieve the user's profile
             callback(credentials)
         }
     }
     
     func getUserProfile() {
         self.getUserCreds { (creds) in
+            // Check for access token //
+            guard let accessToken = creds.accessToken else {
+                print("Access token for user was nil. Returning.")
+                return
+            }
+            
             Auth0
                 .authentication()
-                .userInfo(withAccessToken: creds.accessToken!)
+                .userInfo(withAccessToken: accessToken)
                 .start { result in
                     switch(result) {
-                    case .success(let profile):
-                        // You've got the user's profile, good time to store it locally.
-                    // e.g. self.profile = profile
-                        print(profile.name)
+                        case .success(let profile):
+                            // Did get profile successfully //
+                            let user = User(user: profile)
+                            self.delegate?.didGetUserProfile(user: user)
                     case .failure(let error):
                         // Handle the error
                         print("Error: \(error)")

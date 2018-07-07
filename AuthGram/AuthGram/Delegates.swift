@@ -11,3 +11,7 @@ import Foundation
 protocol ImageHandlerDelegate {
     func didReceiveImages(images: Array<ImgurImage>)
 }
+
+protocol AuthHandlerDelegate {
+    func didGetUserProfile(user: User)
+}

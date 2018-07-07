@@ -11,18 +11,18 @@ import Auth0
 
 private let reuseIdentifier = "ImageCell"
 
-class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate, ImageHandlerDelegate {
-    
+class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate, ImageHandlerDelegate, AuthHandlerDelegate {
+  
     //-- Properties --//
     let authManager = AuthCredentialManager()
-    var images = Dictionary<String, Any>()
-    var imageList = Array<ImgurImage>()
-    let tabBar = UITabBar()
     let serviceHandler = ServiceHandler()
+    let tabBar = UITabBar()
+    var imageList = Array<ImgurImage>()
+    var isAuthed = false
+    var user: User? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Get images //
         serviceHandler.delegate = self
         serviceHandler.getImages()
@@ -30,6 +30,24 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         // Setup tab bar //
         self.initTabBar()
         self.view.addSubview(self.tabBar)
+        
+        // Check for auth //
+        if authManager.manager.hasValid() {
+            // Set flag //
+            self.isAuthed = true
+            
+            // Set delegate //
+            self.authManager.delegate = self
+            
+            // Show logout button //
+            self.navigationItem.leftBarButtonItem = self.createLogoutButton()
+            
+            // This will call our AuthHandlerDelegate //
+            self.authManager.getUserProfile()
+        } else {
+            self.title = "AuthGram"
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
 
     //-- UICollectionViewDataSource --//
@@ -59,8 +77,7 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         print("Starting auth view..")
         
         // Check Auth0 for credentials //
-        if authManager.manager.hasValid() {
-            self.authManager.getUserProfile()
+        if self.isAuthed {
             self.presentUploadImageVC()
         } else {
             // No valid credentials exist, present the login page
@@ -74,10 +91,14 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
                         // Handle the error
                         print("Error: \(error)")
                     case .success(let credentials):
-                        // Auth0 will automatically dismiss the login page
-                        // Store the credentials
-                       let result = self.authManager.manager.store(credentials: credentials)
-                       print(result)
+                        if self.authManager.manager.store(credentials: credentials) {
+                            // Get user from creds //
+                            self.authManager.getUserProfile()
+                        }
+                        
+                        // Set auth flag //
+                        self.isAuthed = true
+                        
                         // Push to upload image view //
                         self.presentUploadImageVC()
                     }
@@ -111,6 +132,26 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         }
     }
     
+    private func createLogoutButton() -> UIBarButtonItem {
+        return UIBarButtonItem.init(title: "Logout", style: .plain, target: self, action: #selector(self.logout))
+    }
+    
+    
+    @objc private func logout() {
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (action) in
+            // If creds were removed //
+            if self.authManager.manager.clear() {
+                self.title = "AuthGram"
+                self.navigationItem.leftBarButtonItem = nil
+                self.isAuthed = false
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     //-- Delegate --//
     func didReceiveImages(images: Array<ImgurImage>) {
         // Download images, async and set in array //
@@ -133,6 +174,16 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
             }
             
             self.collectionView?.reloadData()
+        }
+    }
+    
+    func didGetUserProfile(user: User) {
+        print("User data received")
+        self.user = user
+        DispatchQueue.main.async {
+            self.title = user.nickname!
+            self.navigationItem.leftBarButtonItem = self.createLogoutButton()
+            self.isAuthed = true
         }
     }
 }

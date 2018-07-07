@@ -10,6 +10,7 @@
 		8002C84CF96BABC6A7DB9D8A /* Pods_AuthGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0651303EF654465CBC9C65 /* Pods_AuthGram.framework */; };
 		DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */; };
 		DD2DAA3920F06723005A5EA2 /* AuthCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DAA3820F06723005A5EA2 /* AuthCredentialManager.swift */; };
+		DD2DAA3B20F0716C005A5EA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DAA3A20F0716C005A5EA2 /* User.swift */; };
 		DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4113C720968B9400E6EABA /* AppDelegate.swift */; };
 		DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CB20968B9400E6EABA /* Main.storyboard */; };
 		DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CE20968B9500E6EABA /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		CEE1F68971CF1A9F6329270F /* Pods-AuthGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram.release.xcconfig"; sourceTree = "<group>"; };
 		DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurImage.swift; sourceTree = "<group>"; };
 		DD2DAA3820F06723005A5EA2 /* AuthCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentialManager.swift; sourceTree = "<group>"; };
+		DD2DAA3A20F0716C005A5EA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD4113C420968B9400E6EABA /* AuthGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4113C720968B9400E6EABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD4113CC20968B9400E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */,
+				DD2DAA3A20F0716C005A5EA2 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */,
 				DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */,
 				DDCD6B2720968C5E00991232 /* ServiceHandler.swift in Sources */,
+				DD2DAA3B20F0716C005A5EA2 /* User.swift in Sources */,
 				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
 				DDD952B920C7487A002416FC /* Delegates.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
