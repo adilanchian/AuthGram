@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import Auth0
 
 private let reuseIdentifier = "ImageCell"
 
 class ImageCollectionViewController: UICollectionViewController, UITabBarDelegate, ImageHandlerDelegate {
     
     //-- Properties --//
+    let authManager = AuthCredentialManager()
     var images = Dictionary<String, Any>()
     var imageList = Array<ImgurImage>()
     let tabBar = UITabBar()
-    // TODO: REMOVE TEST PROP //
-    var loggedIn = true
     let serviceHandler = ServiceHandler()
     
     override func viewDidLoad() {
@@ -58,26 +58,34 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("Starting auth view..")
         
-        if loggedIn {
-            guard let uploadImgVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadImageController") as? UploadImageViewController else {
-                print("UploadImageVC was nil. Returning.")
-                return
-            }
-            
-            uploadImgVC.imageTableRef = self
-            present(uploadImgVC, animated: true) {
-                print("uploadImgVC presented.")
-            }
+        // Check Auth0 for credentials //
+        if authManager.manager.hasValid() {
+            self.authManager.getUserProfile()
+            self.presentUploadImageVC()
         } else {
-            guard let authVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthController") as? AuthViewController else {
-                print("AuthVC was nil. Returning.")
-                return
+            // No valid credentials exist, present the login page
+            Auth0
+                .webAuth()
+                .scope("openid profile offline_access")
+                .audience("https://adilanchian.auth0.com/userinfo")
+                .start {
+                    switch $0 {
+                    case .failure(let error):
+                        // Handle the error
+                        print("Error: \(error)")
+                    case .success(let credentials):
+                        // Auth0 will automatically dismiss the login page
+                        // Store the credentials
+                       let result = self.authManager.manager.store(credentials: credentials)
+                       print(result)
+                        // Push to upload image view //
+                        self.presentUploadImageVC()
+                    }
             }
-            
-            self.navigationController?.pushViewController(authVC, animated: true)
         }
     }
     
+    //-- Helpers --//
     private func initTabBar() {
         // Init tab bar delegate //
         self.tabBar.delegate = self
@@ -89,7 +97,18 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         // Add camera image to tab bar //
         let barItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "camera"), tag: 1)
         self.tabBar.setItems([barItem], animated: true)
+    }
+    
+    private func presentUploadImageVC() {
+        guard let uploadImgVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadImageController") as? UploadImageViewController else {
+            print("UploadImageVC was nil. Returning.")
+            return
+        }
         
+        uploadImgVC.imageTableRef = self
+        present(uploadImgVC, animated: true) {
+            print("uploadImgVC presented.")
+        }
     }
     
     //-- Delegate --//

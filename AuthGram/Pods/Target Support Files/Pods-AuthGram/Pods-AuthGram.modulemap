@@ -1,0 +1,6 @@
+framework module Pods_AuthGram {
+  umbrella header "Pods-AuthGram-umbrella.h"
+
+  export *
+  module * { export * }
+}

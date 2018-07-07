@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8002C84CF96BABC6A7DB9D8A /* Pods_AuthGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0651303EF654465CBC9C65 /* Pods_AuthGram.framework */; };
 		DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */; };
+		DD2DAA3920F06723005A5EA2 /* AuthCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DAA3820F06723005A5EA2 /* AuthCredentialManager.swift */; };
 		DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4113C720968B9400E6EABA /* AppDelegate.swift */; };
 		DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CB20968B9400E6EABA /* Main.storyboard */; };
 		DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4113CE20968B9500E6EABA /* Assets.xcassets */; };
 		DD4113D220968B9500E6EABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */; };
-		DD7A840C20B0B6500080147F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A840B20B0B6500080147F /* AuthViewController.swift */; };
+		DD53E53A20F059DC007B41ED /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD53E53920F059DB007B41ED /* Auth0.plist */; };
 		DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */; };
 		DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */; };
 		DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */; };
@@ -21,14 +23,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01D8DE85162968037A63C5FE /* Pods-AuthGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram.debug.xcconfig"; sourceTree = "<group>"; };
+		BF0651303EF654465CBC9C65 /* Pods_AuthGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AuthGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE1F68971CF1A9F6329270F /* Pods-AuthGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram.release.xcconfig"; sourceTree = "<group>"; };
 		DD1C0D3520C47394006EBFC5 /* ImgurImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurImage.swift; sourceTree = "<group>"; };
+		DD2DAA3820F06723005A5EA2 /* AuthCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentialManager.swift; sourceTree = "<group>"; };
 		DD4113C420968B9400E6EABA /* AuthGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4113C720968B9400E6EABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD4113CC20968B9400E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD4113CE20968B9500E6EABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD4113D120968B9500E6EABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4113D320968B9500E6EABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD7A840B20B0B6500080147F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		DD53E53920F059DB007B41ED /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Auth0.plist; sourceTree = "<group>"; };
 		DD7A840F20B0BD8F0080147F /* UploadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4620A12CE200E1F5E4 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -41,17 +47,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8002C84CF96BABC6A7DB9D8A /* Pods_AuthGram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AF0A4EDF88095EF428C7411 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF0651303EF654465CBC9C65 /* Pods_AuthGram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C19578DE15932CACC885635F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01D8DE85162968037A63C5FE /* Pods-AuthGram.debug.xcconfig */,
+				CEE1F68971CF1A9F6329270F /* Pods-AuthGram.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD2DAA3720F066FE005A5EA2 /* Auth0 */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DAA3820F06723005A5EA2 /* AuthCredentialManager.swift */,
+			);
+			path = Auth0;
+			sourceTree = "<group>";
+		};
 		DD4113BB20968B9300E6EABA = {
 			isa = PBXGroup;
 			children = (
 				DD4113C620968B9400E6EABA /* AuthGram */,
 				DD4113C520968B9400E6EABA /* Products */,
+				C19578DE15932CACC885635F /* Pods */,
+				4AF0A4EDF88095EF428C7411 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,17 +100,17 @@
 		DD4113C620968B9400E6EABA /* AuthGram */ = {
 			isa = PBXGroup;
 			children = (
+				DD4113C720968B9400E6EABA /* AppDelegate.swift */,
 				DDD952B820C7487A002416FC /* Delegates.swift */,
 				DDBF1B4A20A12FD800E1F5E4 /* Models */,
 				DD7A840920B0B5E60080147F /* Main */,
-				DD7A840A20B0B62D0080147F /* Auth */,
 				DD7A840E20B0BD710080147F /* UploadImage */,
 				DDCD6B2520968C1400991232 /* Services */,
-				DD4113C720968B9400E6EABA /* AppDelegate.swift */,
 				DD4113CB20968B9400E6EABA /* Main.storyboard */,
 				DD4113CE20968B9500E6EABA /* Assets.xcassets */,
 				DD4113D020968B9500E6EABA /* LaunchScreen.storyboard */,
 				DD4113D320968B9500E6EABA /* Info.plist */,
+				DD53E53920F059DB007B41ED /* Auth0.plist */,
 			);
 			path = AuthGram;
 			sourceTree = "<group>";
@@ -88,14 +122,6 @@
 				DDBF1B4820A12E4F00E1F5E4 /* ImageCollectionViewCell.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		DD7A840A20B0B62D0080147F /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				DD7A840B20B0B6500080147F /* AuthViewController.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		DD7A840E20B0BD710080147F /* UploadImage */ = {
@@ -117,6 +143,7 @@
 		DDCD6B2520968C1400991232 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD2DAA3720F066FE005A5EA2 /* Auth0 */,
 				DDCD6B2620968C5E00991232 /* ServiceHandler.swift */,
 			);
 			path = Services;
@@ -129,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD4113D620968B9500E6EABA /* Build configuration list for PBXNativeTarget "AuthGram" */;
 			buildPhases = (
+				A3B831ABB2419CEBF4AE0603 /* [CP] Check Pods Manifest.lock */,
 				DD4113C020968B9300E6EABA /* Sources */,
 				DD4113C120968B9300E6EABA /* Frameworks */,
 				DD4113C220968B9300E6EABA /* Resources */,
+				80C2E7AA1B7964BB4A3BE692 /* [CP] Embed Pods Frameworks */,
+				4D88E9DC024399523C14C447 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,16 +213,74 @@
 				DD4113D220968B9500E6EABA /* LaunchScreen.storyboard in Resources */,
 				DD4113CF20968B9500E6EABA /* Assets.xcassets in Resources */,
 				DD4113CD20968B9400E6EABA /* Main.storyboard in Resources */,
+				DD53E53A20F059DC007B41ED /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D88E9DC024399523C14C447 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80C2E7AA1B7964BB4A3BE692 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Auth0/Auth0.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Auth0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AuthGram/Pods-AuthGram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3B831ABB2419CEBF4AE0603 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AuthGram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD4113C020968B9300E6EABA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2DAA3920F06723005A5EA2 /* AuthCredentialManager.swift in Sources */,
 				DD7A841020B0BD8F0080147F /* UploadImageViewController.swift in Sources */,
 				DDBF1B4720A12CE200E1F5E4 /* ImageCollectionViewController.swift in Sources */,
 				DD1C0D3620C47394006EBFC5 /* ImgurImage.swift in Sources */,
@@ -200,7 +288,6 @@
 				DDBF1B4920A12E4F00E1F5E4 /* ImageCollectionViewCell.swift in Sources */,
 				DDD952B920C7487A002416FC /* Delegates.swift in Sources */,
 				DD4113C820968B9400E6EABA /* AppDelegate.swift in Sources */,
-				DD7A840C20B0B6500080147F /* AuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +429,7 @@
 		};
 		DD4113D720968B9500E6EABA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01D8DE85162968037A63C5FE /* Pods-AuthGram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -360,6 +448,7 @@
 		};
 		DD4113D820968B9500E6EABA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEE1F68971CF1A9F6329270F /* Pods-AuthGram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
