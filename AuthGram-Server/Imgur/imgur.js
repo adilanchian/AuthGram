@@ -47,12 +47,13 @@ module.exports = {
 		});
 	},
 
-	postImage: image => {
+	postImage: (image, username) => {
 		return new Promise((resolve, reject) => {
 			// Create Form Data //
 			let form = new FormData();
 			form.append('image', new Buffer(image));
 			form.append('album', albumDeleteHash);
+			form.append('title', username);
 
 			form.submit(
 				{

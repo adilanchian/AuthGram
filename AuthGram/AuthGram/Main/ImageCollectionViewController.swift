@@ -127,6 +127,7 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
         }
         
         uploadImgVC.imageTableRef = self
+        uploadImgVC.nickname = self.user?.nickname
         present(uploadImgVC, animated: true) {
             print("uploadImgVC presented.")
         }

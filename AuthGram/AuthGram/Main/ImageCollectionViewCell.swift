@@ -19,16 +19,20 @@ class ImageCollectionViewCell: UICollectionViewCell {
         if let imageData = image.image_data {
             self.image.image = UIImage(data: imageData)
         }
+        
+        // Set username (We will be the title of the image for username) //
+        if image.title != nil {
+            self.username.text = image.title!
+        }
 
         // Convert date time //
         let date = Date(timeIntervalSince1970: TimeInterval(image.datetime))
         let formatter = DateFormatter()
         formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy/MM/dd"
+        formatter.dateStyle = .medium
         self.date.text = formatter.string(from: date)
         
         // Set text to fit after setting //
-        self.username.text = image.account_id
         self.username.sizeToFit()
         self.date.sizeToFit()
     }

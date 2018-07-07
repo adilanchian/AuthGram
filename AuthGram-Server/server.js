@@ -28,14 +28,11 @@ server.get(`${baseApiPath}/images`, async (req, res) => {
 
 server.post(`${baseApiPath}/image`, async (req, res) => {
 	console.log('Posting image...');
-	/*
-		{
-			user: String,
-			image: Base64 String
-		}
-	*/
+
 	let imgString = req.body.image.file_data;
-	let result = await imgur.postImage(imgString).catch(json => {
+	let username = req.body.image.username;
+
+	let result = await imgur.postImage(imgString, username).catch(json => {
 		console.log(json.data.error);
 		// Fail //
 		res.send({

@@ -31,7 +31,7 @@ class ServiceHandler {
     
     // Test request method //
     func testRequest() {
-        guard let task = createRequestTask(method: "GET", endpoint: "/", dataString: nil) else {
+        guard let task = createRequestTask(method: "GET", endpoint: "/", dataString: nil, username: nil) else {
             print("Request task could not be completed. Returning")
             return
         }
@@ -43,7 +43,7 @@ class ServiceHandler {
     // GET api/v1/images //
     
     func getImages() {
-        guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images", dataString: nil) else {
+        guard let task = createRequestTask(method: "GET", endpoint: "\(self.endpointPath)/images", dataString: nil, username: nil) else {
             print("Request task could not be completed. Returning")
             return
         }
@@ -52,10 +52,10 @@ class ServiceHandler {
         task.resume()
     }
     
-    func postImage(base64Img: String) {
+    func postImage(base64Img: String, username: String) {
         print("Starting post image request...")
         
-        guard let task = createRequestTask(method: "POST", endpoint: "\(self.endpointPath)/image", dataString: base64Img) else {
+        guard let task = createRequestTask(method: "POST", endpoint: "\(self.endpointPath)/image", dataString: base64Img, username: username) else {
             print("Request task could not be completed. Returning")
             return
         }
@@ -63,7 +63,7 @@ class ServiceHandler {
         task.resume()
     }
     
-    private func createRequestTask(method: String, endpoint: String, dataString: String?) -> URLSessionTask? {
+    private func createRequestTask(method: String, endpoint: String, dataString: String?, username: String?) -> URLSessionTask? {
         // Set endpoint path //
         self.urlComponents.path = endpoint
         
@@ -80,7 +80,7 @@ class ServiceHandler {
             print("Data passed in.")
             
             do {
-                let imgBody = ["image":["content_type": "image/jpeg", "filename": "test.jpg", "file_data": bodyData]]
+                let imgBody = ["image":["username": username, "content_type": "image/jpeg","file_data": bodyData]]
                 
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = try JSONSerialization.data(withJSONObject: imgBody, options: .prettyPrinted)

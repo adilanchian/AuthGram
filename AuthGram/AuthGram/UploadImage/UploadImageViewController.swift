@@ -14,6 +14,7 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
     //-- Properties --//
     let serviceHandler = ServiceHandler()
     var imageTableRef: ImageCollectionViewController? = nil
+    var nickname: String? = nil
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImageView: UIImageView!
     
@@ -30,7 +31,12 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
         let base64Image = self.toBase64()
 
         // Send body over to ServiceHandler for upload api //
-        self.serviceHandler.postImage(base64Img: base64Image!)
+        if let username = self.nickname {
+            self.serviceHandler.postImage(base64Img: base64Image!, username: username)
+        } else {
+            print("Nickname not created")
+            self.serviceHandler.postImage(base64Img: base64Image!, username: "")
+        }
     }
     
     override func viewDidLoad() {
