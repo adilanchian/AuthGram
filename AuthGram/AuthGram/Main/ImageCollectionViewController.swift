@@ -40,14 +40,14 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // This will be the number of images we receive from the database //
-        return self.imageList.list.count
+        return self.imageList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
         
         // Get current imageCell obj //
-        let currentImageCell = self.imageList.list[indexPath.row]
+        let currentImageCell = self.imageList[indexPath.row]
         
         cell.initCell(image: currentImageCell)
         
@@ -101,7 +101,7 @@ class ImageCollectionViewController: UICollectionViewController, UITabBarDelegat
             }
             
             image.image_data = try? Data(contentsOf: imageUrl)
-            self.imageList.list.insert(image, at: 0)
+            self.imageList.insert(image, at: 0)
         })
         
         DispatchQueue.main.async {
