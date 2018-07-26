@@ -19,11 +19,13 @@ server.get(`${baseApiPath}/images`, async (req, res) => {
 	console.log('Fetching all images...');
 
 	// Send request to get images from Imgur album //
-	let result = await imgur.getImages().catch(json => {
-		res.send({ data: { error: json.data.error }, status: json.status });
-	});
-
-	res.send({ data: result.data, status: result.status });
+	try {
+		let result = await imgur.getImages();
+		res.send({ data: result.data, status: result.status });
+	} catch (error) {
+		console.error(error);
+		res.send({ data: { error: error }, status: 500 });
+	}
 });
 
 server.post(`${baseApiPath}/image`, async (req, res) => {
@@ -32,20 +34,19 @@ server.post(`${baseApiPath}/image`, async (req, res) => {
 	let imgString = req.body.image.file_data;
 	let username = req.body.image.username;
 
-	let result = await imgur.postImage(imgString, username).catch(json => {
-		console.log(json.data.error);
-		// Fail //
+	try {
+		let result = await imgur.postImage(imgString, username);
 		res.send({
-			data: { error: json.data.error },
-			status: json.status
+			data: result.data,
+			status: result.status
 		});
-	});
-
-	// Success //
-	res.send({
-		data: result.data,
-		status: result.status
-	});
+	} catch (error) {
+		console.error(error);
+		res.send({
+			data: { error: error },
+			status: 500
+		});
+	}
 });
 
 server.listen(8000, () => {
